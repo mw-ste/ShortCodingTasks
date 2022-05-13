@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using FizzBuzz;
 using Xunit;
 
 namespace FizzBuzz.UnitTests
@@ -16,9 +15,11 @@ namespace FizzBuzz.UnitTests
             Console.SetOut(_stringWriter);
         }
 
-        private static void RunFizzBuzz(params int[] values) => FizzBuzz.Run(values);
+        private static void RunFizzBuzz(params int[] values) =>
+            FizzBuzz.Run(values);
 
-        private string GetConsoleOutput() => _stringWriter.ToString();
+        private string GetConsoleOutput() =>
+            _stringWriter.ToString();
 
         [Theory]
         [InlineData(3)]
@@ -27,12 +28,12 @@ namespace FizzBuzz.UnitTests
         public void PrintFizzForNumbersDivisibleByThree(int inputValue)
         {
             // Arrange
-            var expectedOutput = "Fizz\n";
+            const string expectedOutput = "Fizz\n";
 
-            //Act
+            // Act
             RunFizzBuzz(inputValue);
 
-            //Assert
+            // Assert
             Assert.Equal(expectedOutput, GetConsoleOutput());
         }
 
@@ -43,12 +44,12 @@ namespace FizzBuzz.UnitTests
         public void PrintBuzzForNumbersDivisibleByFive(int inputValue)
         {
             // Arrange
-            var expectedOutput = "Buzz\n";
+            const string expectedOutput = "Buzz\n";
 
-            //Act
+            // Act
             RunFizzBuzz(inputValue);
 
-            //Assert
+            // Assert
             Assert.Equal(expectedOutput, GetConsoleOutput());
         }
 
@@ -59,12 +60,12 @@ namespace FizzBuzz.UnitTests
         public void PrintFizzBuzzForNumbersDivisibleByThreeAndFive(int inputValue)
         {
             // Arrange
-            var expectedOutput = "FizzBuzz\n";
+            const string expectedOutput = "FizzBuzz\n";
 
-            //Act
+            // Act
             RunFizzBuzz(inputValue);
 
-            //Assert
+            // Assert
             Assert.Equal(expectedOutput, GetConsoleOutput());
         }
 
@@ -77,10 +78,10 @@ namespace FizzBuzz.UnitTests
             // Arrange
             var expectedOutput = $"{inputValue}\n";
 
-            //Act
+            // Act
             RunFizzBuzz(inputValue);
 
-            //Assert
+            // Assert
             Assert.Equal(expectedOutput, GetConsoleOutput());
         }
 
@@ -89,30 +90,14 @@ namespace FizzBuzz.UnitTests
         {
             // Arrange
             var input = Enumerable.Range(1, 16);
-            var expectedOutput = string.Join('\n', new[]
-            {
-                "1",
-                "2",
-                "Fizz",
-                "4",
-                "Buzz",
-                "Fizz",
-                "7",
-                "8",
-                "Fizz",
-                "Buzz",
-                "11",
-                "Fizz",
-                "13",
-                "14",
-                "FizzBuzz",
-                "16\n"
-            });
+            var expectedOutput = string.Join('\n',
+                "1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8",
+                "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz", "16\n");
 
             // Act
             RunFizzBuzz(input.ToArray());
 
-            //Assert
+            // Assert
             Assert.Equal(expectedOutput, GetConsoleOutput());
         }
     }

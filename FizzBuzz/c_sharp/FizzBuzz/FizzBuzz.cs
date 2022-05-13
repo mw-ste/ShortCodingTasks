@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FizzBuzz
 {
     public static class FizzBuzz
     {
-        public static void Run(IEnumerable<int> values){
+        public static void Run(IEnumerable<int> values)
+        {
             foreach (var value in values)
             {
                 var fizz = value % 3 == 0;
