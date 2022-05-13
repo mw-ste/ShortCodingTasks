@@ -1,10 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Xunit;
 
 namespace DictionaryParser.UnitTests
 {
-    using System.Collections.Generic;
-    using System;
-    using Xunit;
-
     public class DictionaryParserShould
     {
         #region test helpers
@@ -13,26 +13,25 @@ namespace DictionaryParser.UnitTests
             Dictionary<string, string> dictionary,
             params (string key, string value)[] expectedKeyValuePairs)
         {
-            Assert.Equal(expectedKeyValuePairs.Length, dictionary.Count);
-            foreach (var (key, value) in expectedKeyValuePairs)
-            {
-                Assert.Contains(dictionary, kvp =>
-                    kvp.Key == key &&
-                    kvp.Value == value);
-            }
+            var expectedDictionary = expectedKeyValuePairs.ToDictionary(
+                kvp => kvp.key,
+                kvp => kvp.value);
+
+            Assert.Equal(expectedDictionary, dictionary);
         }
 
         #endregion
 
-        #region given test cases
-
         [Fact]
         public void ParseEasyString()
         {
+            // Arrange
             const string inputText = "a=1;b=2;c=3";
 
+            // Act
             var result = DictionaryParser.Parse(inputText);
 
+            // Assert
             AssertDictionaryContainsKeyValuePairs(result,
                 ("a", "1"),
                 ("b", "2"),
@@ -42,20 +41,26 @@ namespace DictionaryParser.UnitTests
         [Fact]
         public void ParseStringWithDuplicateKey()
         {
+            // Arrange
             const string inputText = "a=1;a=2";
 
+            // Act
             var result = DictionaryParser.Parse(inputText);
 
+            // Assert
             AssertDictionaryContainsKeyValuePairs(result, ("a", "2"));
         }
 
         [Fact]
         public void ParseStringWithSpaces()
         {
+            // Arrange
             const string inputText = "a = 1; b = 2";
 
+            // Act
             var result = DictionaryParser.Parse(inputText);
 
+            // Assert
             AssertDictionaryContainsKeyValuePairs(result,
                 ("a", "1"),
                 ("b", "2"));
@@ -64,10 +69,13 @@ namespace DictionaryParser.UnitTests
         [Fact]
         public void ParseStringWithExtraSemiColon()
         {
+            // Arrange
             const string inputText = "a=1;;b=2";
 
+            // Act
             var result = DictionaryParser.Parse(inputText);
 
+            // Assert
             AssertDictionaryContainsKeyValuePairs(result,
                 ("a", "1"),
                 ("b", "2"));
@@ -76,36 +84,48 @@ namespace DictionaryParser.UnitTests
         [Fact]
         public void InsertEmptyValueForMissingInputValue()
         {
+            // Arrange
             const string inputText = "a=";
 
+            // Act
             var result = DictionaryParser.Parse(inputText);
 
+            // Assert
             AssertDictionaryContainsKeyValuePairs(result, ("a", ""));
         }
 
         [Fact]
         public void CreateEmptyDictionaryForEmptyInputString()
         {
+            // Arrange
             const string inputText = "";
 
+            // Act
             var result = DictionaryParser.Parse(inputText);
 
+            // Assert
             Assert.Empty(result);
         }
 
         [Fact]
         public void UseAdditionalEqualsSignsAsPartOfValue()
         {
+            // Arrange
             const string inputText = "a==1";
 
+            // Act
             var result = DictionaryParser.Parse(inputText);
 
+            // Assert
             AssertDictionaryContainsKeyValuePairs(result, ("a", "=1"));
         }
 
         [Fact]
         public void RaiseExceptionForMissingInputKey()
         {
+            // Arrange
+            // Act
+            // Assert
             Assert.Throws<ArgumentException>(() =>
                 DictionaryParser.Parse("=1"));
         }
@@ -113,27 +133,27 @@ namespace DictionaryParser.UnitTests
         [Fact]
         public void RaiseExceptionForMissingEqualsSign()
         {
+            // Arrange
+            // Act
+            // Assert
             Assert.Throws<ArgumentException>(() =>
                 DictionaryParser.Parse("a"));
         }
 
-        #endregion
-
-        #region additional tests
-
         [Fact]
         public void ParseDictionaryForAllProblemsCombined()
         {
+            // Arrange
             const string inputText = " a = 1 ; ; c =  ; ; b = = 2 ";
 
+            // Act
             var result = DictionaryParser.Parse(inputText);
 
+            // Assert
             AssertDictionaryContainsKeyValuePairs(result,
                 ("a", "1"),
                 ("b", "= 2"),
                 ("c", ""));
         }
-
-        #endregion
     }
 }
