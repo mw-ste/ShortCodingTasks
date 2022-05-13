@@ -8,15 +8,12 @@ namespace DictionaryParser
     {
         public static Dictionary<string, string> Parse(string text)
         {
-            var dictionary = new Dictionary<string, string>();
-
-            text.Split(';')
-                .Where(pair => !string.IsNullOrEmpty(pair.Trim()))
+            return text.Split(';')
+                .Where(pair => !string.IsNullOrWhiteSpace(pair))
                 .Select(ParseKeyValuePair)
-                .ToList()
-                .ForEach(kvp => dictionary[kvp.key] = kvp.value);
-
-            return dictionary;
+                .Aggregate(
+                    new Dictionary<string, string>(),
+                    AddKeyValuePairToDictionary);
         }
 
         private static (string key, string value) ParseKeyValuePair(string pair)
@@ -36,6 +33,15 @@ namespace DictionaryParser
             }
 
             return (key, value);
+        }
+
+        private static Dictionary<string, string> AddKeyValuePairToDictionary(
+            Dictionary<string, string> dictionary,
+            (string key, string value) keyValuePair)
+        {
+            var (key, value) = keyValuePair;
+            dictionary[key] = value;
+            return dictionary;
         }
     }
 }
