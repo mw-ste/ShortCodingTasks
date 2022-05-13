@@ -14,3 +14,4 @@
   - `"a==1"` &rarr; `{'a': '=1'}`
   - `"=2"` &rarr; `Exception`
   - `"a"` &rarr; `Exception`
+  - `" a = 1 ; ; c =  ; ; b = = 2 "` &rarr; `{'a': '1', 'b':'= 2', 'c': ''}`

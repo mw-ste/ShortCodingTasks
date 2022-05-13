@@ -10,7 +10,7 @@ namespace DictionaryParser
         {
             var dictionary = new Dictionary<string, string>();
 
-            text.Split(";")
+            text.Split(';')
                 .Where(pair => !string.IsNullOrEmpty(pair.Trim()))
                 .Select(ParseKeyValuePair)
                 .ToList()
@@ -21,12 +21,12 @@ namespace DictionaryParser
 
         private static (string key, string value) ParseKeyValuePair(string pair)
         {
-            if (!pair.Contains("="))
+            if (!pair.Contains('='))
             {
                 throw new ArgumentException("No equals sign in pair");
             }
 
-            var split = pair.Split("=", 2);
+            var split = pair.Split('=', 2);
             var key = split[0].Trim();
             var value = split[1].Trim();
 
