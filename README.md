@@ -4,6 +4,7 @@
 - inform the interviewee **upfront** that he will have to solve a small coding task:
   - let him choose a programming language and IDE
   - kindly ask him to set his PC up for sharing his screen and solving the task
+  - he should try to code, as if this example was part of his daily work
 
 ## What to look for
 
