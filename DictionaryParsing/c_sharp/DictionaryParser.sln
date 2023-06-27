@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryParser", "Diction
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryParser.UnitTests", "DictionaryParser.UnitTests\DictionaryParser.UnitTests.csproj", "{39B51C78-883B-4BBD-84EF-E6C37EE09609}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryParser.Fluent.UnitTests", "DictionaryParser.Fluent.UnitTests\DictionaryParser.Fluent.UnitTests.csproj", "{EBBE873B-1F09-4FD9-A852-8B902FB23751}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{39B51C78-883B-4BBD-84EF-E6C37EE09609}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39B51C78-883B-4BBD-84EF-E6C37EE09609}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39B51C78-883B-4BBD-84EF-E6C37EE09609}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBBE873B-1F09-4FD9-A852-8B902FB23751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBBE873B-1F09-4FD9-A852-8B902FB23751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBBE873B-1F09-4FD9-A852-8B902FB23751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBBE873B-1F09-4FD9-A852-8B902FB23751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
