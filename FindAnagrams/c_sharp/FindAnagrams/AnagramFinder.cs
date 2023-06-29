@@ -9,17 +9,25 @@ public static class AnagramFinder
             return new List<List<string>>();
         }
 
-        var parts = text
+        var keyValuePairs = text
             .Split(' ')
             .Where(x => !string.IsNullOrWhiteSpace(x))
-            .Select(x =>
-            {
-                var charArray = x.ToLower().ToCharArray();
-                Array.Sort(charArray);
-                return (Key: charArray, x);
-            });
+            .Select(CreateKeyValuePair);
+            
+        var groups = keyValuePairs
+            .GroupBy(x => x.Key)
+            .Select(x => x.AsEnumerable().Select(y => y.Value).ToList())
+            .Where(x => x.Count > 1)
+            .ToList();
 
-        Console.WriteLine(parts);
-        throw new NotImplementedException();
+        return groups;
+    }
+
+    private static KeyValuePair<string, string> CreateKeyValuePair(string text)
+    {
+        var charArray = text.ToLower().ToCharArray();
+        Array.Sort(charArray);
+        var key = string.Join("", charArray);
+        return new KeyValuePair<string, string>(key, text);
     }
 }
