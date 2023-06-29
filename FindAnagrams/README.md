@@ -19,7 +19,6 @@
   - return `[[one, neo, eon]]` for input `one neo eon`
   - return `[[one, neo, eon]]` for input ` one  neo   eon `
   - return `[[one, ONE, oNe]]` for input `one ONE oNe`
-  - return `[[One, Neo, Eon]]` for input `One Neo Eon`
   
   - return `[[one, neo], [two, wot]]` for input `one two neo wot`
   - return `[[one, NEO, ONE], [two, wot], [three, eerht]]` for input `one two  three NEO eerht   wot what ONE one`
