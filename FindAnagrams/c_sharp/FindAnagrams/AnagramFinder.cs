@@ -4,34 +4,22 @@ public static class AnagramFinder
 {
     public static List<List<string>> Find(string text)
     {
-        var keyValuePairs = text
+        return text
             .Split(' ')
             .Where(word => !string.IsNullOrWhiteSpace(word))
-            .Select(CreateKeyValuePair);
-            
-        var groups = keyValuePairs
-            .GroupBy(kvp => kvp.Key)
-            .Select(ExpandGroup)
+            .Distinct()
+            .GroupBy(GetGroupingKey)
+            .Select(grouping => grouping.ToList())
             .Where(groupMembers => groupMembers.Count > 1)
             .ToList();
-
-        return groups;
     }
 
-    private static List<string> ExpandGroup(IGrouping<string, KeyValuePair<string, string>> grouping)
+    private static string GetGroupingKey(string text)
     {
-        return grouping
-            .AsEnumerable()
-            .Select(kvp => kvp.Value)
-            .Distinct()
-            .ToList();
-    }
-
-    private static KeyValuePair<string, string> CreateKeyValuePair(string text)
-    {
-        var charArray = text.ToLower().ToCharArray();
-        Array.Sort(charArray);
-        var key = string.Join("", charArray);
-        return new KeyValuePair<string, string>(key, text);
+        return text
+            .ToLower()
+            .ToCharArray()
+            .OrderBy(x => x)
+            .Aggregate("", (word, c) => word + c);
     }
 }

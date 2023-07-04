@@ -8,7 +8,7 @@ public class AnagramFinderShould
     public void ReturnEmptyResultForEmptyInput()
     {
         //Arrange
-        var input = "";
+        const string input = "";
 
         //Act
         var result = AnagramFinder.Find(input);
@@ -21,7 +21,7 @@ public class AnagramFinderShould
     public void ReturnEmptyResultWhenNoAnagramsAreGiven()
     {
         //Arrange
-        var input = "one two three";
+        const string input = "one two three";
 
         //Act
         var result = AnagramFinder.Find(input);
@@ -34,7 +34,7 @@ public class AnagramFinderShould
     public void NotCountDuplicatesAsAnagram()
     {
         //Arrange
-        var input = "one one one";
+        const string input = "one one one";
 
         //Act
         var result = AnagramFinder.Find(input);
@@ -47,7 +47,7 @@ public class AnagramFinderShould
     public void RecognizeAnagramsOfSameWordAsAnagrams()
     {
         //Arrange
-        var input = "one neo eon";
+        const string input = "one neo eon";
 
         //Act
         var result = AnagramFinder.Find(input);
@@ -60,7 +60,7 @@ public class AnagramFinderShould
     public void IgnoreAdditionalWhitespaces()
     {
         //Arrange
-        var input = " one  neo   eon ";
+        const string input = " one  neo   eon ";
 
         //Act
         var result = AnagramFinder.Find(input);
@@ -73,7 +73,7 @@ public class AnagramFinderShould
     public void RecognizeSameWordWithDifferentCasingAsAnagram()
     {
         //Arrange
-        var input = "one ONE oNe";
+        const string input = "one ONE oNe";
 
         //Act
         var result = AnagramFinder.Find(input);
@@ -86,7 +86,7 @@ public class AnagramFinderShould
     public void ReturnAnagramsOfSeveralWords()
     {
         //Arrange
-        var input = "one two neo wot";
+        const string input = "one two neo wot";
 
         //Act
         var result = AnagramFinder.Find(input);
@@ -101,7 +101,7 @@ public class AnagramFinderShould
     public void FindAllAnagrams()
     {
         //Arrange
-        var input = "one two  three NEO eerht   wot what ONE one";
+        const string input = "one two  three NEO eerht   wot what ONE one";
 
         //Act
         var result = AnagramFinder.Find(input);
