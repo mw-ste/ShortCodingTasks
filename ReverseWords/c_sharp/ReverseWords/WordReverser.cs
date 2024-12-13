@@ -1,6 +1,6 @@
 ﻿namespace ReverseWords;
 
-public class Class1
+public class WordReverser
 {
 
 }

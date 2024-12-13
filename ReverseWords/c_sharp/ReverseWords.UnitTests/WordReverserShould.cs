@@ -2,7 +2,7 @@ namespace ReverseWords.UnitTests;
 
 using Xunit;
 
-public class UnitTest1
+public class WordReverserShould
 {
     [Fact]
     public void Test1()
