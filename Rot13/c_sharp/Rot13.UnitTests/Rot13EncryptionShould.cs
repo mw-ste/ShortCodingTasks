@@ -1,6 +1,8 @@
 namespace Rot13.UnitTests;
 
-public class UnitTest1
+using Xunit;
+
+public class Rot13EncryptionShould
 {
     [Fact]
     public void Test1()
