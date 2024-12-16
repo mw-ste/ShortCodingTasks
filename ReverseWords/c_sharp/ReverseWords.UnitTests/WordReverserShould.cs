@@ -34,7 +34,7 @@ public class WordReverserShould
     }
 
     [Fact]
-    public void ReverseLongWordsInSentense()
+    public void ReverseLongWordsInSentence()
     {
         //Arrange
         const string text = "abc abcd ab abcde";
@@ -63,7 +63,7 @@ public class WordReverserShould
     }
 
     [Fact]
-    public void PreserveWhitespacesInSentense()
+    public void PreserveWhitespacesInSentence()
     {
         //Arrange
         const string text = "abc abcd  ab   abcde";
